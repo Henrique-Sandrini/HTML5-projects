@@ -1,2 +1,4 @@
 Verum_1.6.1/ filter=lfs diff=lfs merge=lfs -text
 ERP/ filter=lfs diff=lfs merge=lfs -text
+ERP/ filter=lfs diff=lfs merge=lfs -text
+ERP.rar filter=lfs diff=lfs merge=lfs -text
