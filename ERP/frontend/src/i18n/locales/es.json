@@ -1,0 +1,56 @@
+{
+  "navbar": {
+    "title": "🏢 Sistema ERP",
+    "dashboard": "Panel",
+    "products": "Productos",
+    "clients": "Clientes",
+    "orders": "Pedidos"
+  },
+  "orders": {
+    "title": "Gestionar Pedidos",
+    "newOrder": "Nuevo Pedido",
+    "cancel": "Cancelar",
+    "addOrder": "Agregar Nuevo Pedido",
+    "client": "Cliente",
+    "product": "Producto",
+    "quantity": "Cantidad",
+    "totalPrice": "Precio Total ($)",
+    "status": "Estado",
+    "saveOrder": "Guardar Pedido",
+    "orderList": "Lista de Pedidos",
+    "clientHeader": "Cliente",
+    "productHeader": "Producto",
+    "quantityHeader": "Cantidad",
+    "totalHeader": "Total",
+    "statusHeader": "Estado",
+    "dateHeader": "Fecha",
+    "selectClient": "Seleccione un cliente",
+    "selectProduct": "Seleccione un producto",
+    "statusOptions": {
+      "pending": "Pendiente",
+      "processing": "Procesando",
+      "shipped": "Enviado",
+      "delivered": "Entregado",
+      "cancelled": "Cancelado"
+    }
+  },
+  "common": {
+    "save": "Guardar",
+    "cancel": "Cancelar"
+  },
+  "clients": {
+  "title": "Gestionar Clientes",
+  "newClient": "Nuevo Cliente",
+  "addClient": "Agregar Nuevo Cliente",
+  "name": "Nombre",
+  "email": "Correo Electrónico",
+  "phone": "Teléfono",
+  "address": "Dirección",
+  "saveClient": "Guardar Cliente",
+  "clientList": "Lista de Clientes",
+  "nameHeader": "Nombre",
+  "emailHeader": "Correo Electrónico",
+  "phoneHeader": "Teléfono",
+  "addressHeader": "Dirección"
+}
+}
