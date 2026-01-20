@@ -1,6 +1,6 @@
-# Project Name
+# Fatec Website
 
-## Project Description
+## Website developed to test the programming skills in website development.
 
 This project was developed as part of academic activities at **FATEC** for the Web Development discipline.  
 The objective is to apply fundamental concepts of web development, including structure, styling, and basic interactivity.
