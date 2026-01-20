@@ -2,3 +2,4 @@
 ERP/ filter=lfs diff=lfs merge=lfs -text
 ERP/ filter=lfs diff=lfs merge=lfs -text
 ERP.rar filter=lfs diff=lfs merge=lfs -text
+fatec/ filter=lfs diff=lfs merge=lfs -text

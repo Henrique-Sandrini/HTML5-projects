@@ -1,0 +1,2 @@
+selecioneIdioma='Selecione o Idioma'
+sobre='Sobre o sistema'
