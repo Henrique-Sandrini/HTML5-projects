@@ -14,7 +14,7 @@ Static web application focused on front-end structure, modular navigation, and m
 - Technologies: HTML5, CSS3, JavaScript
 - Type: Front-end / Static Web
 - Documentation:  
-  [`Verum Project README`](./Verum_1.6.1/Verum/README.md)
+  [`Verum Project README`](Verum_1.6.1/Verum_1.6.1/Verum/README.MD)
 
 ---
 
@@ -29,7 +29,7 @@ Full Stack ERP (Enterprise Resource Planning) system developed as an academic pr
   - Products, Clients, and Orders management
   - Internationalization (Portuguese, English, Spanish)
 - Documentation:  
-  [`ERP System README`](./ERP/README.md)
+  [`ERP System README`](ERP/README.md)
 
 ---
 
