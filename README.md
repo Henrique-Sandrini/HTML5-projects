@@ -29,7 +29,7 @@ Full Stack ERP (Enterprise Resource Planning) system developed as an academic pr
   - Products, Clients, and Orders management
   - Internationalization (Portuguese, English, Spanish)
 - Documentation:  
-  [`ERP System README`](ERP/README.md)
+  [`ERP System README`](ERP/readme.md)
 
 ---
 
