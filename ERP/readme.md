@@ -1,192 +1,227 @@
-Sistema ERP - Documentação do Projeto
-Sobre o Projeto
-Sistema ERP (Enterprise Resource Planning) desenvolvido como projeto acadêmico para a disciplina de Desenvolvimento Web Full Stack. O sistema implementa funcionalidades essenciais de gestão empresarial com interface moderna e internacionalização.
+# ERP System
 
-Professor: José
-Tecnologias: React.js, Node.js, SQLite, Bootstrap
+## Project Overview
 
-Funcionalidades Implementadas
-Módulo de Autenticação
-Login seguro com JWT (JSON Web Tokens)
+This ERP (Enterprise Resource Planning) System was developed as an academic project for the **Full Stack Web Development** course.  
+The system implements essential business management features with a modern interface and full internationalization support.
 
-Proteção de rotas - acesso restrito a usuários autenticados
+**Instructor:** José  
+**Technologies:** React.js, Node.js, SQLite, Bootstrap
 
-Logout com limpeza de sessão
+---
 
-Credenciais padrão: admin / admin123
+## Implemented Features
 
-Dashboard
-Visão geral do sistema com métricas em tempo real
+### Authentication Module
+- Secure login using JWT (JSON Web Tokens)
+- Route protection with restricted access for authenticated users
+- Logout with session cleanup
+- Default credentials:
+  - **Username:** admin  
+  - **Password:** admin123
 
-Cards informativos com totais de produtos, clientes, pedidos e pedidos pendentes
+---
 
-Módulo de Produtos
-CRUD completo de produtos
+### Dashboard
+- System overview with real-time metrics
+- Informational cards displaying:
+  - Total products
+  - Total clients
+  - Total orders
+  - Pending orders
 
-Campos: Nome, Descrição, Categoria, Preço, Quantidade
+---
 
-Listagem com tabela responsiva
+### Products Module
+- Full CRUD operations for products
+- Fields:
+  - Name
+  - Description
+  - Category
+  - Price
+  - Quantity
+- Responsive table listing
 
-Módulo de Clientes
-Gestão de clientes com dados completos
+---
 
-Campos: Nome, Email, Telefone, Endereço
+### Clients Module
+- Complete client management
+- Fields:
+  - Name
+  - Email
+  - Phone
+  - Address
+- User-friendly interface for registration and search
 
-Interface intuitiva para cadastro e consulta
+---
 
-Módulo de Pedidos
-Criação de pedidos com cálculo automático de valores
+### Orders Module
+- Order creation with automatic value calculation
+- Intelligent selection of clients and products
+- Automatic total calculation (quantity × price)
+- Order statuses:
+  - Pending
+  - Processing
+  - Shipped
+  - Delivered
+  - Cancelled
+- Real-time stock validation
 
-Seleção inteligente de clientes e produtos
+---
 
-Cálculo automático do total baseado em quantidade × preço
+### Internationalization (i18n)
+- Support for three languages:
+  - Portuguese
+  - English
+  - Spanish
+- Dynamic language switching using flags
+- Fully translated user interface
 
-Status do pedido: Pendente, Processando, Enviado, Entregue, Cancelado
+---
 
-Validação de estoque em tempo real
+## Technologies Used
 
-Internacionalização (i18n)
-Suporte a 3 idiomas: Português, Inglês e Espanhol
+### Frontend
+- React.js 18
+- React Router DOM
+- React i18next
+- Axios
+- Bootstrap 5
 
-Troca dinâmica de idioma com bandeiras
+### Backend
+- Node.js
+- Express.js
+- SQLite3
+- JWT
+- bcryptjs
+- CORS
+- UUID
 
-Tradução completa de todas as interfaces
+---
+```
+## Project Structure
 
-Tecnologias Utilizadas
-Frontend
-React.js 18
-
-React Router DOM
-
-React i18next
-
-Axios
-
-Bootstrap 5
-
-Backend
-Node.js
-
-Express.js
-
-SQLite3
-
-JWT
-
-bcryptjs
-
-CORS
-
-UUID
-
-Estrutura do Projeto
-text
 erp-system/
 ├── backend/
-│   ├── server.js
-│   ├── package.json
-│   └── node_modules/
+│ ├── server.js
+│ ├── package.json
+│ └── node_modules/
 └── frontend/
-    ├── public/
-    │   └── index.html
-    ├── src/
-    │   ├── components/
-    │   ├── pages/
-    │   ├── i18n/
-    │   ├── App.js
-    │   ├── App.css
-    │   └── index.js
-    └── package.json
-Como Executar o Projeto
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-Pré-requisitos
-Node.js (versão 14 ou superior)
+├── public/
+│ └── index.html
+├── src/
+│ ├── components/
+│ ├── pages/
+│ ├── i18n/
+│ ├── App.js
+│ ├── App.css
+│ └── index.js
+└── package.json
+```
+---
 
-npm
+## How to Run the Project
 
-1. Configuração do Backend
+### Prerequisites
+- Node.js (version 14 or higher)
+- npm
+
+---
+
+### Backend Setup
+
+```
 bash
 cd backend
 npm install
 npm run dev
-Backend disponível em: http://localhost:5000
+Backend will be available at:
+http://localhost:5000
+```
 
-2. Configuração do Frontend
+### Frontend Setup
+```
 bash
+Copiar código
 cd frontend
 npm install --legacy-peer-deps
 npm start
-Frontend disponível em: http://localhost:3000
+Frontend will be available at:
+http://localhost:3000
 
-3. Acesse o Sistema
+Access the System
 URL: http://localhost:3000
 
-Usuário: admin
+Username: admin
 
-Senha: admin123
+Password: admin123
+```
+## API Endpoints
 
-API Endpoints
-Autenticação
-POST /api/auth/login - Login de usuário
+### Authentication
+- `POST /api/auth/login` — User login
+- `GET /api/auth/verify` — Token verification
 
-GET /api/auth/verify - Verificar token
+---
 
-Produtos
-GET /api/products - Listar produtos
+### Products
+- `GET /api/products` — List products
+- `POST /api/products` — Create product
 
-POST /api/products - Criar produto
+---
 
-Clientes
-GET /api/clients - Listar clientes
+### Clients
+- `GET /api/clients` — List clients
+- `POST /api/clients` — Create client
 
-POST /api/clients - Criar cliente
+---
 
-Pedidos
-GET /api/orders - Listar pedidos
+### Orders
+- `GET /api/orders` — List orders
+- `POST /api/orders` — Create order
 
-POST /api/orders - Criar pedido
+---
 
-Destaques Técnicos
-Funcionalidades Avançadas
-Cálculo Automático de valores em pedidos
+## Technical Highlights
 
-Validação em Tempo Real de estoque disponível
+### Advanced Features
+- Automatic order total calculation
+- Real-time stock validation
+- Responsive interface using Bootstrap
+- SPA navigation (Single Page Application)
+- State management with React Hooks
 
-Interface Responsiva com Bootstrap
+---
 
-Navegação por SPA (Single Page Application)
+### Security
+- JWT-based authentication
+- Protected routes on frontend and backend
+- Password encryption with bcrypt
+- Configured CORS headers
 
-Gestão de Estado com React Hooks
+---
 
-Segurança
-Autenticação baseada em JWT
+### UX/UI
+- Modern and intuitive design
+- Visual feedback for user actions
+- Loading states and error messages
+- Full internationalization support
 
-Proteção de rotas no frontend e backend
+---
 
-Senhas criptografadas com bcrypt
+## Data Structure
 
-Headers CORS configurados
+### Database Tables
+- `users` — System users
+- `products` — Product catalog
+- `clients` — Client records
+- `orders` — Order records
 
-UX/UI
-Design moderno e intuitivo
+---
 
-Feedback visual para ações do usuário
+## Author
 
-Loading states e mensagens de erro
+**Henrique**  
+Undergraduate student in Systems Analysis and Development  
 
-Internacionalização completa
-
-Estrutura de Dados
-Tabelas do Banco
-users - Usuários do sistema
-
-products - Catálogo de produtos
-
-clients - Cadastro de clientes
-
-orders - Registro de pedidos
-
-Desenvolvido por
-Henrique
-Acadêmico de Analise e Desenvolvimento de Sistemas
-Projeto desenvolvido para fins educacionais.
+This project was developed for educational purposes.
