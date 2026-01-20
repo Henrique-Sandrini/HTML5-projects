@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="Chat/verum5.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin Slab">
+    <script src="https://cdn.jsdelivr.net/npm/string-similarity/umd/string-similarity.min.js"></script> 
+    <title>ChatBot - VerumIA</title>
+    <style>
+        nav {
+            background-color: #1e1e1e; 
+            color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+        }
+
+        nav::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, rgb(212, 137, 255) 0%, rgba(107, 81, 255, 0.5) 100%);
+            box-shadow: 0 0 8px rgba(0, 225, 255, 0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+            color: #fff58d; /* Amarelo claro no hover */
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #2d2d2d; /* Preto escuro para o submenu */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .submenu a {
+            color: #fff;
+            padding: 12px 16px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .submenu a:hover {
+            background-color: #3a3a3a;
+        }
+
+
+.gradient-text {
+            font-weight: bold; /* Peso da fonte */
+            display: inline-block;
+}
+
+.gradient-text span {
+            transition: color 0.5s ease-in-out; /* Transição de cor suave com duração de 0.5 segundos */
+}
+
+ body {
+    font-family: 'Josefin Slab', sans-serif;
+            color: #e1e1e1;
+            background-color: #121212; /* Fundo escuro para a página */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1e1e1e; /* Fundo escuro para o conteúdo principal */
+            border-radius: 8px;
+            color: #e1e1e1;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .message {
+        margin-bottom: 10px;
+        opacity: 0; /* Inicialmente, definimos a opacidade como 0 */
+        animation: slideIn 0.5s ease forwards; /* Adicionamos a animação */
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateY(20px); /* Começa 20px abaixo */
+            opacity: 0; /* Opacidade inicial */
+        }
+        to {
+            transform: translateY(0); /* Termina na posição normal */
+            opacity: 1; /* Opacidade final */
+        }
+    }
+
+    #chatbox {
+    background-color: #1C1C1C;
+    width: 50rem;
+    height: 40rem;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: scroll;
+    margin: 2rem auto 4px; /* Centraliza horizontalmente */
+    font-family: 'Montserrat', sans-serif;
+}
+        .message {
+            margin-bottom: 10px;
+        }
+        .Usuário {
+            background-color: #4F4F4F;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            max-width: 80%;
+            align-self: flex-end;
+            text-align: left;
+            margin-left: auto;
+        }
+        .Verum {
+            background-color: #6959CD;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            max-width: 80%;
+            align-self: flex-start;
+            text-align: left;
+        }
+        .options {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .option-button {
+            background-color: #483D8B;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+/* Estilos para a caixa de texto do usuário */
+.usuario-input {
+    background-color: #FFFFFF; /* Cor de fundo */
+    color: #000000; /* Cor do texto */
+    border: 1px solid #483D8B; /* Borda sólida com a cor do navbar */
+    padding: 8px; /* Espaçamento interno */
+    border-radius: 5px; /* Borda arredondada */
+    width: calc(100% - 20px); /* Largura igual à largura do chatbox menos o padding */
+    margin-bottom: 1rem; /* Espaçamento inferior */
+    box-sizing: border-box; /* Inclui a largura da borda e do preenchimento no tamanho total */
+    font-family: 'Josefin Slab', sans-serif;
+    font-weight: bold;
+}
+
+.usuario-input:focus {
+    outline: none; /* Remove o contorno ao ganhar foco */
+    border-color: #6959CD; /* Muda a cor da borda ao ganhar foco */
+}
+        
+        #sendMessageButton {
+    background-color: #483D8B; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove a borda do botão */
+    padding: 5px 10px; /* Espaçamento interno do botão */
+    border-radius: 5px; /* Borda arredondada */
+    cursor: pointer; /* Altera o cursor ao passar o mouse sobre o botão */
+    font-family: 'Josefin Slab', sans-serif;
+}
+
+#sendMessageButton:hover {
+    background-color: #6959CD; /* Cor de fundo do botão ao passar o mouse */
+}
+a.bookmark {
+            color: #e2a4ff;
+            text-decoration: none;
+        }
+
+        a.bookmark:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="toggleSubMenu('submenuImportar')">Menu</a>
+                <ul class="submenu" id="submenuImportar" style="display: none;">
+                    <li><a href="PagInicial/paginicial.html">Início</a></li>
+                    <li><a href="Login/cadastro.html">Cadastro</a></li>
+                    <li><a href="Login/Entrar.html">Login</a></li>
+                    <li><a href="ChatBot.html">ChatBot</a></li>
+                    <li><a href="FForum/forum.html">Fórum</a></li>
+                    <li><a href="#" onclick="toggleSubMenu('submenuImport')">Importar</a>
+                        <ul class="submenu" id="submenuImport" style="display: none;">
+                            <li><a href="videosverum/videos.html">Vídeo</a></li>
+                            <li><a href="imagens/imagens.html">Imagem</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="Ajuda/AJUDAr.html#C5">Planos Verum IA+</a></li>
+                    <li><a href="perfil verum/perfil.html">Perfil</a></li>
+                    <li><a href="Ajuda/AJUDAr.html">Ajuda</a></li>
+                </ul>
+            </li>
+            <li><a href="Login/contato.html">Contato</a></li>
+        </ul>
+    </nav>
+    
+ <div class="container">
+    <script>
+        function toggleSubMenu(submenuId) {
+            var submenu = document.getElementById(submenuId);
+            if (submenu.style.display === "none") {
+                submenu.style.display = "block";
+            } else {
+                submenu.style.display = "none";
+            }
+        }
+    </script>
+    
+
+    <!-- Conteúdo da página -->
+    <div class="content" style='text-align:center'>
+        <h1>Bem-vindo à <span id="gradient-text" class="gradient-text">VerumIA</span></h1>
+        <h2>Uma inteligência artificial em prol da verdade.</h2>
+    </div>
+
+    <div id="chatbox"></div>
+    <input type="text" id="UsuárioInput" class="usuario-input" placeholder="Digite sua mensagem..." style="width: 47.5rem; margin-left: 15.7%;">
+    <button id="sendMessageButton" class="option-button" onclick="sendMessage()">Enviar</button>
+    <script>
+        
+// Seleciona o elemento de texto com gradiente
+const gradientText = document.getElementById('gradient-text');
+
+// Cores do gradiente
+const colors = ['#7B68EE', '#9370DB', '#8A2BE2', '#7B68EE'];
+
+// Função para aplicar o gradiente em cada letra individualmente
+function applyGradient() {
+    const text = gradientText.textContent;
+    gradientText.innerHTML = '';
+    for (let i = 0; i < text.length; i++) {
+        const letter = document.createElement('span');
+        letter.style.color = colors[i % colors.length]; // Aplica a cor do gradiente
+        letter.textContent = text[i];
+        gradientText.appendChild(letter);
+    }
+}
+
+// Aplica o gradiente inicialmente
+applyGradient();
+
+// Animação do gradiente
+let index = 0;
+setInterval(() => {
+    index = (index + 1) % colors.length;
+    gradientText.childNodes.forEach((letter, i) => {
+        letter.style.color = colors[(index + i) % colors.length];
+    });
+}, 1000); // Altera a cada segundo (1000 milissegundos)
+
+        const chatbox = document.getElementById('chatbox');
+        const UsuárioInput = document.getElementById('UsuárioInput');
+
+        function normalizeMessage(message) {
+    // Remove acentos e transforma todos os caracteres em minúsculas
+    return message.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
+// Limiar de similaridade
+const threshold = 0.6;
+
+// Verifica se a similaridade entre duas frases é maior ou igual ao threshold
+function isSimilar(input, phrase) {
+    const similarity = stringSimilarity.compareTwoStrings(normalizeMessage(input), normalizeMessage(phrase));
+    return similarity >= threshold;
+}
+
+function typeMessage(sender, message, callback) {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message', sender);
+    chatbox.appendChild(messageElement);
+
+    let i = 0;
+    const interval = setInterval(function() {
+        if (i < message.length) {
+            messageElement.textContent = `${sender}: ${message.substring(0, i + 1)}`;
+            chatbox.scrollTop = chatbox.scrollHeight;
+            i++;
+        } else {
+            clearInterval(interval);
+            if (callback) {
+                callback(); // Chama a função de callback após terminar de digitar a mensagem
+            }
+        }
+    }, 35); // Atraso entre cada caractere em milissegundos
+}
+
+        function sendMessage() {
+            
+            const message = normalizeMessage(UsuárioInput.value); // Normaliza a mensagem do usuário
+            UsuárioInput.value = ''; // Limpa o campo de entrada de texto
+            displayMessage('Usuário', message);
+
+            // Define um temporizador para simular um atraso antes da resposta do chatbot
+            setTimeout(function() {
+                // Perguntas bases
+            if (isSimilar (message, 'oi') ||isSimilar (message, 'ola')) {
+                typeMessage('Verum', 'Olá, tudo bem? Bem vindo a Verum, como posso ajudar?');
+              } else if (isSimilar (message, 'o que voce pode fazer?') || isSimilar (message, 'o que voce faz?') || isSimilar (message, 'como voce pode me ajudar?')) {
+                typeMessage('Verum', 'Eu sou capaz de analizar vídeos e imagens, dizendo se foram feitos ou não por outras IAs, gostaria de experimentar?', displayOptions);
+            } else if (isSimilar (message, 'qual e o seu nome?') || isSimilar (message, 'o que e Verum?')) {
+                typeMessage('Verum', 'Meu nome é Verum, sou uma inteligência artificial capaz de analizar vídeos e imagens e dizer se os mesmos foram criados por outra IA, se quiser saber com mais detalhes o que posso fazer, acesse nossa página de ajuda!',displayOptions1);
+            } else if (isSimilar (message, 'quem te fez?') || isSimilar (message, 'quem te criou??') || isSimilar (message, 'quem fez voce?') || isSimilar (message, 'quem é seu dono?')) {
+                typeMessage('Verum', 'Eu fui desenvolvido pela equipe da NexWz, uma equipe formada por apenas 4 pessoas, se quiser saber mais sobre a NexWz, acesso nossa página de informações!');
+                // Peguntas sobre importação de imagens
+            } else if (isSimilar (message, 'como faço para enviar uma imagem para analise?') || isSimilar (message, 'qual e o procedimento para importar uma imagem para analise?') || isSimilar (message, 'como posso carregar uma imagem para que ela seja analisada?') || isSimilar (message, 'como eu mando uma imagem pra voces analisarem?') || isSimilar (message, 'como eu importo uma imagem ser analisada?') || isSimilar (message, 'como analiso uma imagem?') || isSimilar (message, 'como importo uma imagem?')) {
+                typeMessage('Verum', 'Para enviar uma imagem para análise, você deve acessar nossa página de importação, lá você pode importar um arquivo de imagem (JPG, JPeG, PNG, WEBP, GIF, ...) que será analisado em poucos segundos.');
+                
+                // Caso não entenda a pergunta
+            } else {
+                typeMessage('Verum', 'Desculpe, não entendi sua pergunta.');
+            }
+            }, 1000); // 1000 milissegundos = 1 segundo de atraso
+        }
+
+        function displayMessage(sender, message) {
+            const messageElement = document.createElement('div');
+            messageElement.textContent = `${sender}: ${message}`;
+            messageElement.classList.add('message', sender);
+            chatbox.appendChild(messageElement);
+            chatbox.scrollTop = chatbox.scrollHeight;
+
+            
+        }
+
+        function displayOptions() {
+    const optionsElement = document.createElement('div');
+    optionsElement.classList.add('options');
+    optionsElement.style.opacity = 1;
+    optionsElement.style.transform = 'translateY(0px)';
+    chatbox.appendChild(optionsElement);
+
+    // Animação de deslizar para baixo
+    optionsElement.animate([
+        { opacity: 0, transform: 'translateY(10px)' },
+        { opacity: 1, transform: 'translateY(0px)' }
+    ], {
+        duration: 500, // Duração da animação em milissegundos
+        easing: 'ease' // Tipo de easing
+        
+    });
+
+
+    const analyzeVideoButton = document.createElement('button');
+    analyzeVideoButton.textContent = 'Analisar Vídeos';
+    analyzeVideoButton.classList.add('option-button');
+    analyzeVideoButton.addEventListener('click', function() {
+        window.location.href = 'videosverum/videos.html';
+    });
+
+    const analyzeImageButton = document.createElement('button');
+    analyzeImageButton.textContent = 'Analisar Imagens';
+    analyzeImageButton.classList.add('option-button');
+    analyzeImageButton.addEventListener('click', function() {
+        window.location.href = 'imagens/imagens.html';
+    });
+
+    optionsElement.appendChild(analyzeVideoButton);
+    optionsElement.appendChild(analyzeImageButton);
+}
+
+function displayOptions1() {
+    const optionsElement = document.createElement('div');
+    optionsElement.classList.add('options');
+    optionsElement.style.opacity = 1;
+    optionsElement.style.transform = 'translateY(0px)';
+    chatbox.appendChild(optionsElement);
+
+    // Animação de deslizar para baixo
+    optionsElement.animate([
+        { opacity: 0, transform: 'translateY(10px)' },
+        { opacity: 1, transform: 'translateY(0px)' }
+    ], {
+        duration: 500, // Duração da animação em milissegundos
+        easing: 'ease' // Tipo de easing
+        
+    });
+
+
+    const helpButton = document.createElement('button');
+    helpButton.textContent = 'Página de Ajuda';
+    helpButton.classList.add('option-button');
+    helpButton.addEventListener('click', function() {
+        window.location.href = 'Ajuda/AJUDAr.html';
+    });
+
+    optionsElement.appendChild(helpButton);
+}
+        UsuárioInput.addEventListener('keyup', function(event) {
+                if (event.keyCode === 13) {
+                sendMessage();
+                 }
+            });
+    </script>
+    </div>
+    <footer style="background-color: #181818; color: #ccc; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 14px; text-align: center;">
+        Contato: <a href="mailto:verumsup@gmail.com?subject=Necessidade%20de%20Suporte&body=Olá,%0A%0APreciso%20de%20ajuda%20com%20o%20assunto%20abaixo:%0A%0AObrigado!" class="bookmark">verumsup@gmail.com</a> | 
+        Selos de segurança: Todos os direitos reservados à VerumIA. | 
+        Direitos autorais: NexWz. | © 2024
+      </footer>
+</body>
+</html>

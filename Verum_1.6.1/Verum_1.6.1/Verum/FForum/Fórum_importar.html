@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="verum5.png">
+    <title>Fórum Importar - VerumIA</title>
+    <link rel="stylesheet" href="picture__input.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin Slab">
+    <style>
+nav {
+            background-color: #1e1e1e; 
+            color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+        }
+
+        nav::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, rgb(212, 137, 255) 0%, rgba(107, 81, 255, 0.5) 100%);
+            box-shadow: 0 0 8px rgba(0, 225, 255, 0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+            color: #fff58d; /* Amarelo claro no hover */
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #2d2d2d; /* Preto escuro para o submenu */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .submenu a {
+            color: #fff;
+            padding: 12px 16px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .submenu a:hover {
+            background-color: #3a3a3a;
+        }
+
+        .container1 {
+            width: 110rem;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1e1e1e; /* Fundo escuro para o conteúdo principal */
+            border-radius: 8px;
+            color: #e1e1e1;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+             
+        }
+
+        .left-content {
+            float: left;
+            width: 60%; 
+            padding: 20px;
+        }
+
+        .right-content {
+            float: right;
+            width: 30%; 
+            padding: 20px;
+        }
+
+        /* Estilo para o conteúdo da página */
+        body,html {
+            font-family: 'Josefin Slab', sans-serif;
+            color: #e1e1e1;
+            background-color: #121212; /* Fundo escuro para a página */
+            margin: 0;
+            padding: 0;
+            height: 100%; 
+            display: flex;
+            flex-direction: column; 
+        }
+        .content {
+            flex: 1; 
+        }
+        
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #141414; /* Fundo escuro para o conteúdo principal */
+            border-radius: 8px;
+            color: #e1e1e1;
+            box-shadow: 0 2px 4px rgba(97, 97, 97, 0.3);
+        }
+        
+        h1 {
+            font-family: 'Josefin Slab', sans-serif;
+            color:#ffffff;;
+        }
+
+        #videoPicker {
+            display: none;
+        }
+        
+        .file-input-label {
+            font-family: 'Josefin Slab', sans-serif;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #483D8B;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-family: 'Josefin Slab', sans-serif;
+
+        }
+        
+        .file-input-label:hover {
+            background-color: #0056b3;
+        }
+        
+        .loading-icon {
+            display: none;
+            margin-top: 20px;
+        }
+        
+        .loading-icon img {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .loading-text {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #777;
+        }
+
+        .loading-icon1 {
+            display: none;
+            margin-top: 20px;
+        }
+        
+        .loading-icon1 img {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .loading-text1 {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #777;
+        }
+        
+        video {
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        input[type=file]{
+            display: none;
+        }
+        a.bookmark {
+            color: #e2a4ff;
+            text-decoration: none;
+        }
+
+        a.bookmark:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="toggleSubMenu('submenuImportar')">Menu</a>
+                <ul class="submenu" id="submenuImportar" style="display: none;">
+                    <li><a href="../PagInicial/paginicial.html">Início</a></li>
+                    <li><a href="../Login/cadastro.html">Cadastro</a></li>
+                    <li><a href="../Login/Entrar.html">Login</a></li>
+                    <li><a href="../ChatBot.html">ChatBot</a></li>
+                    <li><a href="forum.html">Fórum</a></li>
+                    <li><a href="#" onclick="toggleSubMenu('submenuImport')">Importar</a>
+                        <ul class="submenu" id="submenuImport" style="display: none;">
+                            <li><a href="../videosverum/videos.html">Vídeo</a></li>
+                            <li><a href="../imagens/imagens.html">Imagem</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../Ajuda/AJUDAr.html#C5">Planos Verum IA+</a></li>
+                    <li><a href="../perfil verum/perfil.html">Perfil</a></li>
+                    <li><a href="../Ajuda/AJUDAr.html">Ajuda</a></li>
+                </ul>
+            </li>
+            <li><a href="../Login/contato.html">Contato</a></li>
+        </ul>
+    </nav>
+<div class="content">
+    <div class="container1">
+    <script>
+        function toggleSubMenu(submenuId) {
+            var submenu = document.getElementById(submenuId);
+            if (submenu.style.display === "none") {
+                submenu.style.display = "block";
+            } else {
+                submenu.style.display = "none";
+            }
+        }
+    </script>
+<div class="container" style='text-align:center'>
+    <h1>Escolha uma imagem para postar no fórum</h1>
+    <label for="imagePicker" class="file-input-label">Escolha uma Imagem</label>
+    <input type="file" id="imagePicker" accept="image/*">
+    <div id="loadingIcon1" class="loading-icon1">
+        <img src="https://global.discourse-cdn.com/sitepoint/original/3X/e/3/e352b26bbfa8b233050087d6cb32667da3ff809c.gif" alt="Loading...">
+        <p class="loading-text1">Carregando...</p>
+    </div>
+    <hr style="border: 2px solid rgb(212, 137, 255); margin: 2em 0;">
+    <h1>OU</h1>
+    <hr style="border: 2px solid rgb(212, 137, 255); margin: 2em 0;">
+
+    <div class="container" style='text-align:center'>
+        <h1>Escolha um vídeo para postar no fórum</h1>
+        <label for="videoPicker" class="file-input-label">Escolha um Vídeo</label>
+        <input type="file" id="videoPicker" accept="video/*">
+        <div id="loadingIcon" class="loading-icon">
+            <img src="https://global.discourse-cdn.com/sitepoint/original/3X/e/3/e352b26bbfa8b233050087d6cb32667da3ff809c.gif" alt="Loading...">
+            <p class="loading-text">Carregando...</p>
+        </div>
+        <video id="videoPlayer" controls autoplay muted>
+            Seu navegador não suporta a tag de vídeo.
+        </video>
+    </div>
+</div>
+</div>
+</div>   
+    <script>
+        const videoPicker = document.getElementById('videoPicker');
+        const videoPlayer = document.getElementById('videoPlayer');
+        const loadingIcon = document.getElementById('loadingIcon');
+    
+        videoPicker.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const videoURL = URL.createObjectURL(file);
+    
+            // Exibir ícone de carregamento
+            loadingIcon.style.display = 'block';
+    
+            // Após um tempo, redirecionar para outra página com o mesmo vídeo
+            setTimeout(function() {
+                window.location.href = 'forum_vid.html';
+            }, 3000); // Tempo em milissegundos (aqui definido como 3 segundos)
+    
+            // Definir o vídeo no player
+            videoPlayer.src = videoURL;
+        });
+    </script>     
+    <script>
+        const imagePicker = document.getElementById('imagePicker');
+        const imageDisplay = document.getElementById('imageDisplay');
+        const loadingIcon1 = document.getElementById('loadingIcon1');
+    
+        imagePicker.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const imageURL = URL.createObjectURL(file);
+    
+            // Exibir ícone de carregamento
+            loadingIcon1.style.display = 'block';
+    
+            // Após um tempo, redirecionar para outra página com a mesma imagem
+            setTimeout(function() {
+                window.location.href = 'forum_img.html';
+            }, 3000); // Tempo em milissegundos (aqui definido como 3 segundos)
+    
+            // Definir a imagem no display
+            imageDisplay.src = imageURL;
+            imageDisplay.style.display = 'block';
+        });
+    </script> 
+        <footer style="background-color: #181818; color: #ccc; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 14px; text-align: center;">
+            Contato: <a href="mailto:verumsup@gmail.com?subject=Necessidade%20de%20Suporte&body=Olá,%0A%0APreciso%20de%20ajuda%20com%20o%20assunto%20abaixo:%0A%0AObrigado!" class="bookmark">verumsup@gmail.com</a> | 
+            Selos de segurança: Todos os direitos reservados à VerumIA. | 
+            Direitos autorais: NexWz. | © 2024
+          </footer> 
+</body>
+</html>

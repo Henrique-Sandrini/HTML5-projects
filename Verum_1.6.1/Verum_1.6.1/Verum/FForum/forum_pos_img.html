@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="verum5.png">
+    <title>Fórum - VerumIA</title>
+    <style>
+
+
+        .container {
+            width: 100%;
+  height: 100%;
+  --s: 222px;
+  --c1: #182230be;
+  --c2: #121c3ac0;
+  --c3: #0e0d2bc5;
+
+  --_g: var(--c1) 10%, var(--c2) 10.5% 19%, #0000 19.5% 80.5%,
+    var(--c2) 81% 89.5%, var(--c3) 90%;
+  --_c: from -90deg at 37.5% 50%, #0000 75%;
+  --_l1: linear-gradient(145deg, var(--_g));
+  --_l2: linear-gradient(35deg, var(--_g));
+  background: var(--_l1), var(--_l1) calc(var(--s) / 2) var(--s), var(--_l2),
+    var(--_l2) calc(var(--s) / 2) var(--s),
+    conic-gradient(var(--_c), var(--c1) 0) calc(var(--s) / 8) 0,
+    conic-gradient(var(--_c), var(--c3) 0) calc(var(--s) / 2) 0,
+    linear-gradient(
+      90deg,
+      var(--c3) 38%,
+      var(--c1) 0 50%,
+      var(--c3) 0 62%,
+      var(--c1) 0
+    );
+  background-size: var(--s) calc(2 * var(--s) / 3);
+  opacity: 98%;
+}
+        
+
+
+nav {
+            background-color: #1e1e1e; 
+            color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+        }
+
+        nav::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, rgb(212, 137, 255) 0%, rgba(107, 81, 255, 0.5) 100%);
+            box-shadow: 0 0 8px rgba(0, 225, 255, 0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+            color: #fff58d; /* Amarelo claro no hover */
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #2d2d2d; /* Preto escuro para o submenu */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .submenu a {
+            color: #fff;
+            padding: 12px 16px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .submenu a:hover {
+            background-color: #3a3a3a;
+        }
+
+
+        .container {
+            width: 70%;
+            margin: auto;
+            background-color: #1D1D2A;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+             
+        }
+
+        .left-content {
+            float: left;
+            width: 60%; 
+            padding: 20px;
+        }
+
+        .right-content {
+            float: right;
+            width: 30%; 
+            padding: 20px;
+        }
+
+        .video-box {
+            background-color: #222;
+            height: 500px;
+            margin-bottom: 20px;
+            margin-right: 400px;
+            
+        }
+
+        .user-profile {
+            margin-bottom: 20px;
+           
+        }
+
+        .user-profile img {
+            width: 50px; 
+            height: 50px;
+            border-radius: 50%; 
+            margin-right: 10px;
+            float: left;
+            border: 1px solid #ffffff;
+            object-fit: cover;
+        }
+
+        .user-profile .username {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .user-profile .description {
+            font-size: 0.8em;
+            
+        }
+
+        .thumbnail-box {
+            background-color: #333;
+            height: 195px;
+            margin-bottom: 20px;
+           
+        }
+
+        body, html {
+            background-image: url('galaxy.gif');
+            background-size: cover; 
+            background-repeat: repeat; 
+            background-color: rgba(255, 255, 255, 0.5); 
+            height: 100%; 
+            display: flex;
+            flex-direction: column; 
+        }
+        .content {
+            flex: 1; 
+        }
+
+    
+        .buttons {
+            display: flex;
+            gap: 25px;
+        }
+
+        .curtir input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.curtir {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+  transition: 100ms;
+}
+
+.checkmark {
+  top: 0;
+  left: 0;
+  height: 2em;
+  width: 2em;
+  transition: 100ms;
+  animation: dislike_401 400ms ease;
+}
+
+.curtir input:checked ~ .checkmark path {
+  fill: #8172e0;
+  stroke-width: 1.2;
+  stroke: #000000;
+ 
+}
+
+.curtir input:checked ~ .checkmark {
+  animation: like_401 400ms ease;
+}
+
+.curtir:hover {
+  transform: scale(1.1);
+}
+
+@keyframes like_401 {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes dislike_401 {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.bookmarkBtn {
+  width: 130px;
+  height: 40px;
+  border-radius: 40px;
+  border: none;
+  background-color: #8172e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: .3s;
+  overflow: hidden;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.062);
+}
+
+.IconContainer {
+  width: 30px;
+  height: 30px;
+  background-color: rgb(103, 74, 228);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+  transition-duration: .3s;
+}
+
+.icon {
+  border-radius: 1px;
+}
+
+.text {
+  height: 100%;
+  width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(26, 26, 26);
+  z-index: 1;
+  transition-duration: .3s;
+  font-size: 1.04em;
+  font-weight: 600;
+}
+
+.bookmarkBtn:hover .IconContainer {
+  width: 120px;
+  border-radius: 40px;
+  transition-duration: .3s;
+}
+
+.bookmarkBtn:hover .text {
+  transform: translate(10px);
+  width: 0;
+  font-size: 0;
+  transition-duration: .3s;
+}
+
+.bookmarkBtn:active {
+  transform: scale(0.95);
+  transition-duration: .3s;
+}
+
+.image-box {
+    background-color: #222;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Garante que nada exceda o espaço */
+}
+
+.centered-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Garante que a imagem mantenha as proporções */
+}
+a.bookmark {
+            color: #e2a4ff;
+            text-decoration: none;
+        }
+
+        a.bookmark:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+  <nav>
+    <ul>
+        <li><a href="#" onclick="toggleSubMenu('submenuImportar')">Menu</a>
+            <ul class="submenu" id="submenuImportar" style="display: none;">
+                <li><a href="../PagInicial/paginicial.html">Início</a></li>
+                <li><a href="../Login/cadastro.html">Cadastro</a></li>
+                <li><a href="../Login/Entrar.html">Login</a></li>
+                <li><a href="../ChatBot.html">ChatBot</a></li>
+                <li><a href="forum.html">Fórum</a></li>
+                <li><a href="#" onclick="toggleSubMenu('submenuImport')">Importar</a>
+                    <ul class="submenu" id="submenuImport" style="display: none;">
+                        <li><a href="../videosverum/videos.html">Vídeo</a></li>
+                        <li><a href="../imagens/imagens.html">Imagem</a></li>
+                    </ul>
+                </li>
+                <li><a href="../Ajuda/AJUDAr.html#C5">Planos Verum IA+</a></li>
+                <li><a href="../perfil verum/perfil.html">Perfil</a></li>
+                <li><a href="../Ajuda/AJUDAr.html">Ajuda</a></li>
+            </ul>
+        </li>
+        <li><a href="../Login/contato.html">Contato</a></li>
+    </ul>
+</nav>
+<div class="content">
+<div class="container">
+<script>
+    function toggleSubMenu(submenuId) {
+        var submenu = document.getElementById(submenuId);
+        if (submenu.style.display === "none") {
+            submenu.style.display = "block";
+        } else {
+            submenu.style.display = "none";
+        }
+    }
+</script>
+        
+        <div class="left-content">
+
+            <div class="image-box">
+                <img src="../imagens/diplo.webp" alt="Imagem principal" class="centered-image" height= "500px"  controls>
+            </div>
+
+         
+            <div class="user-profile">
+                <img src="verum5.png" alt="Ícone do Usuário">
+                <div class="username">VerumIA</div>
+                <div class="description" id="userDescription"></div>
+                <div style="margin-bottom: 30px;"></div>
+                <div class="buttons">
+
+                    <label class="curtir">
+                        <input type="checkbox" checked="checked">
+                        <div class="checkmark">
+                          <svg fill="none" viewBox="0 0 24 24">
+                          <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.3" stroke="#FFFFFF" d="M8 10V20M8 10L4 9.99998V20L8 20M8 10L13.1956 3.93847C13.6886 3.3633 14.4642 3.11604 15.1992 3.29977L15.2467 3.31166C16.5885 3.64711 17.1929 5.21057 16.4258 6.36135L14 9.99998H18.5604C19.8225 9.99998 20.7691 11.1546 20.5216 12.3922L19.3216 18.3922C19.1346 19.3271 18.3138 20 17.3604 20L8 20"></path>
+                          </svg>
+                        </div>
+                      </label>
+
+                        <button class="bookmarkBtn">
+                            <span class="IconContainer"> 
+                             <svg fill="white" viewBox="0 0 512 512" height="1em"><path d="M123.6 391.3c12.9-9.4 29.6-11.8 44.6-6.4c26.5 9.6 56.2 15.1 87.8 15.1c124.7 0 208-80.5 208-160s-83.3-160-208-160S48 160.5 48 240c0 32 12.4 62.8 35.7 89.2c8.6 9.7 12.8 22.5 11.8 35.5c-1.4 18.1-5.7 34.7-11.3 49.4c17-7.9 31.1-16.7 39.4-22.7zM21.2 431.9c1.8-2.7 3.5-5.4 5.1-8.1c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208s-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6c-15.1 6.6-32.3 12.6-50.1 16.1c-.8 .2-1.6 .3-2.4 .5c-4.4 .8-8.7 1.5-13.2 1.9c-.2 0-.5 .1-.7 .1c-5.1 .5-10.2 .8-15.3 .8c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4c4.1-4.2 7.8-8.7 11.3-13.5c1.7-2.3 3.3-4.6 4.8-6.9c.1-.2 .2-.3 .3-.5z"></path></svg>
+                            </span>
+                            <p class="text">Comentar</p>
+                          </button>
+
+                      </button>
+                      <script>
+                        const description = localStorage.getItem('userDescription');
+                    
+                        if (description) {
+                            document.getElementById('userDescription').innerText = description;
+                        } else {
+                            document.getElementById('userDescription').innerText = "Nenhuma descrição foi adicionada.";
+                        }
+                    </script>
+                </div>
+
+
+                <div style="margin-bottom: 30px;"></div>
+                <div style="border-top: 1px solid rgb(219, 166, 255); margin: 30px 0;"></div>
+
+                <h2>Comentários: 0</h2>
+
+            </div>
+        </div>
+
+        <div class="right-content">
+
+            <!-- Caixas de miniaturas -->
+
+            <div class="thumbnail-box">
+              <div class="video-box">
+                
+                <video height= "195px" width = "396px" controls>
+                  <source src="mamute.mp4" type="video/mp4">
+            </div>
+
+                <p></p>
+            </div>
+            <div class="user-profile">
+                <img src="calmo.png" alt="Ícone do Usuário">
+                <div class="username">CharlieBrownJrFan</div>
+                <div class="description">Achei esse video irado de mamutes.. é ia..</div>
+            </div>
+            <div style="border-top: 1px solid rgb(219, 166, 255); margin: 30px 0;"></div>
+            <div class="thumbnail-box">
+              <div class="video-box">
+                
+                <video height= "195px" width = "396px" controls>
+                  <source src="gato.mp4" type="video/mp4">
+            </div>
+                <p></p>
+            </div>
+            <div class="user-profile">
+                <img src="yuty.png" alt="Ícone do Usuário">
+                <div class="username">xXDinoMasterXx</div>
+                <div class="description">A patinha do gato tá meio errada, em.</div>
+            </div>
+            <div style="border-top: 1px solid rgb(219, 166, 255); margin: 30px 0;"></div>
+            <div class="thumbnail-box">
+                <div class="video-box">
+                
+                <video height= "195px" width = "396px" controls>
+                  <source src="lagos.mp4" type="video/mp4">
+                  
+            </div>
+                <p></p>
+            </div>
+            <div class="user-profile">
+                <img src="homoranha.png" alt="Ícone do Usuário">
+                <div class="username">Amigo da Vizinhança</div>
+                <div class="description">A inteligência artificial geralmente não consegue acertar a proporção das coisas..</div>
+            </div>
+            <div style="border-top: 1px solid rgb(219, 166, 255); margin: 30px 0;"></div>
+            <div class="thumbnail-box">
+              <div class="image-box">
+                <img src="cybas.webp" alt="Imagem principal" class="centered-image" height= "195px" width = "396px" controls>
+            </div>
+                
+            </div>
+            <div class="user-profile">
+                <img src="queleto.gif" alt="Ícone do Usuário">
+                <div class="username">Queleto</div>
+                <div class="description">Não é que essa IA analisa bemzão?</div>
+            </div>
+            <div style="border-top: 1px solid rgb(219, 166, 255); margin: 30px 0;"></div>
+            
+        </div>
+      </div>
+    </div>
+  <footer style="background-color: #181818; color: #ccc; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 14px; text-align: center;">
+    Contato: <a href="mailto:verumsup@gmail.com?subject=Necessidade%20de%20Suporte&body=Olá,%0A%0APreciso%20de%20ajuda%20com%20o%20assunto%20abaixo:%0A%0AObrigado!" class="bookmark">verumsup@gmail.com</a> | 
+    Selos de segurança: Todos os direitos reservados à VerumIA. | 
+    Direitos autorais: NexWz. | © 2024
+  </footer>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="verum5.png">
+    <title>Vídeo analisado - Verum IA</title>
+    <!-- Referência ao arquivo CSS -->
+    <link rel="stylesheet" href="picture__input.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin Slab">
+    <style>
+nav {
+            background-color: #1e1e1e; 
+            color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+        }
+
+        nav::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, rgb(212, 137, 255) 0%, rgba(107, 81, 255, 0.5) 100%);
+            box-shadow: 0 0 8px rgba(0, 225, 255, 0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+            color: #fff58d; /* Amarelo claro no hover */
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #2d2d2d; /* Preto escuro para o submenu */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .submenu a {
+            color: #fff;
+            padding: 12px 16px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .submenu a:hover {
+            background-color: #3a3a3a;
+        }
+        .hero button {
+            background-color: #483D8B;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-color: #372f6b;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .hero button:hover {
+            background-color: #5b4eb3;
+        }
+        .container1 {
+            width: 110rem;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1e1e1e; /* Fundo escuro para o conteúdo principal */
+            border-radius: 8px;
+            color: #e1e1e1;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+             
+        }
+
+        .left-content {
+            float: left;
+            width: 60%; 
+            padding: 20px;
+        }
+
+        .right-content {
+            float: right;
+            width: 30%; 
+            padding: 20px;
+        }
+
+        /* Estilo para o conteúdo da página */
+        body {
+            font-family: 'Josefin Slab', sans-serif;
+            color: #e1e1e1;
+            background-color: #121212; /* Fundo escuro para a página */
+            margin: 0;
+            padding: 0;
+            height: 100%; 
+            display: flex;
+            flex-direction: column; 
+        }
+        .content {
+            flex: 1; 
+        }
+        
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #141414; /* Fundo escuro para o conteúdo principal */
+            border-radius: 8px;
+            color: #e1e1e1;
+            box-shadow: 0 2px 4px rgba(97, 97, 97, 0.3);
+        }
+        
+        h1 {
+            font-family: 'Josefin Slab', sans-serif;
+            color:#ffffff;;
+        }
+
+        #videoPicker {
+            display: none;
+        }
+        
+        .file-input-label {
+            font-family: 'Josefin Slab', sans-serif;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #483D8B;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-family: 'Josefin Slab', sans-serif;
+
+        }
+        
+        .file-input-label:hover {
+            background-color: #0056b3;
+        }
+        
+        .loading-icon {
+            display: none;
+            margin-top: 20px;
+        }
+        
+        .loading-icon img {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .loading-text {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #777;
+        }
+        
+        video {
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .video-slider {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .video-slide {
+            display: none;
+        }
+
+        .video-slide video {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .active-slide {
+            display: block;
+        }
+
+        .navigation {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .navigation button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .navigation button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        a.bookmark {
+            color: #e2a4ff;
+            text-decoration: none;
+        }
+
+        a.bookmark:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<nav>
+        <ul>
+            <li><a href="#" onclick="toggleSubMenu('submenuImportar')">Menu</a>
+                <ul class="submenu" id="submenuImportar" style="display: none;">
+                    <li><a href="../PagInicial/paginicial.html">Início</a></li>
+                    <li><a href="../Login/cadastro.html">Cadastro</a></li>
+                    <li><a href="../Login/Entrar.html">Login</a></li>
+                    <li><a href="../ChatBot.html">ChatBot</a></li>
+                    <li><a href="../FForum/forum.html">Fórum</a></li>
+                    <li><a href="#" onclick="toggleSubMenu('submenuImport')">Importar</a>
+                        <ul class="submenu" id="submenuImport" style="display: none;">
+                            <li><a href="../videosverum/videos.html">Vídeo</a></li>
+                            <li><a href="../imagens/imagens.html">Imagem</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../Ajuda/AJUDAr.html#C5">Planos Verum IA+</a></li>
+                    <li><a href="../perfil verum/perfil.html">Perfil</a></li>
+                    <li><a href="../Ajuda/AJUDAr.html">Ajuda</a></li>
+                </ul>
+            </li>
+            <li><a href="../Login/contato.html">Contato</a></li>
+        </ul>
+    </nav>
+<div class="content">
+    <div class="container1">
+    <script>
+        function toggleSubMenu(submenuId) {
+            var submenu = document.getElementById(submenuId);
+            if (submenu.style.display === "none") {
+                submenu.style.display = "block";
+            } else {
+                submenu.style.display = "none";
+            }
+        }
+    </script>
+
+<div class="container" style="text-align: center;">
+    <h1>Vídeos Analisados</h1>
+    <div class="video-slider">
+        <!-- Vídeos -->
+        <div class="video-slide active-slide">
+            <video controls autoplay muted loop>
+                <source src="ArthurIA1.mp4" type="video/mp4">
+                Seu navegador não suporta a reprodução de vídeos.
+            </video>
+        </div>
+        <div class="video-slide">
+            <video controls autoplay muted loop>
+                <source src="ArthurIA2.mp4" type="video/mp4">
+                Seu navegador não suporta a reprodução de vídeos.
+            </video>
+        </div>
+        <div class="video-slide">
+            <video controls autoplay muted loop>
+                <source src="ArthurIA3.mp4" type="video/mp4">
+                Seu navegador não suporta a reprodução de vídeos.
+            </video>
+        </div>
+
+        <!-- Botões de navegação -->
+        <div class="navigation">
+            <button id="prev">❮</button>
+            <button id="next">❯</button>
+        </div>
+    </div>
+</div>
+    <div class="container">
+            <h1> O QUE HÁ DE ERRADO NESTE VÍDEO? </h1>
+            <ul>- COPO SOFRENDO DEFORMAÇÕES;</ul>
+            <ul>- OLHO SE LOCOMOVENDO E MUDANDO DE TAMANHO;</ul>
+            <ul>- COPO POSSUINDO MAIS LÍQUIDO DO QUE HAVIA INICIALMENTE;</ul>
+            <ul>- INCOSISTENCIA EM ADORNO DO CHAPÉU.</ul>
+            <br>
+            <div style='text-align:center' class="hero">
+                <a href="../FForum/Fórum_importar.html"><button>Publique no fórum!</button></a>
+            </div>
+                     
+    </div>
+</div>
+</div> 
+<script>
+    const slides = document.querySelectorAll('.video-slide');
+    let currentIndex = 0;
+
+    const showSlide = (index) => {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active-slide');
+            if (i === index) {
+                slide.classList.add('active-slide');
+            }
+        });
+    };
+
+    document.getElementById('prev').addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlide(currentIndex);
+    });
+
+    document.getElementById('next').addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+    });
+</script>
+<footer style="background-color: #181818; color: #ccc; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 14px; text-align: center;">
+    Contato: <a href="mailto:verumsup@gmail.com?subject=Necessidade%20de%20Suporte&body=Olá,%0A%0APreciso%20de%20ajuda%20com%20o%20assunto%20abaixo:%0A%0AObrigado!" class="bookmark">verumsup@gmail.com</a> | 
+    Selos de segurança: Todos os direitos reservados à VerumIA. | 
+    Direitos autorais: NexWz. | © 2024
+  </footer>
+</body>
+</html>

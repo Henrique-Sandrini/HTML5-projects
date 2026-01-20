@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../Chat/verum5.png">
+    <title>Página Inicial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset de estilos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f7f2;
+            color: #333;
+        }
+
+        nav {
+            background-color: #1e1e1e; 
+            color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+        }
+
+        nav::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, rgb(212, 137, 255) 0%, rgba(107, 81, 255, 0.5) 100%);
+            box-shadow: 0 0 8px rgba(0, 225, 255, 0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+            color: #fff58d; /* Amarelo claro no hover */
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #2d2d2d; /* Preto escuro para o submenu */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .submenu a {
+            color: #fff;
+            padding: 12px 16px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .submenu a:hover {
+            background-color: #3a3a3a;
+        }
+
+
+        /* Hero Section */
+        .hero {
+    height: 100vh;
+    background: url('aha.png') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: #fff;
+    text-align: center;
+    padding: 0 20px;
+}
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .hero button {
+            background-color: #fff6a7;
+            color: #000;
+            font-weight: 600;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .hero button:hover {
+            background-color: #ffdc50;
+        }
+
+        /* Seções */
+        section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            color: #797979;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #4e4e4e;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Serviços Section */
+        .services {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .service-item {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .service-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .service-item p {
+            font-size: 1.1rem;
+            color: #777;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Call to Action */
+        .cta {
+          background: url('aha2.png') no-repeat center center/cover;
+            color: #fff;
+            padding: 60px 20px;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+        }
+
+        .cta button {
+            background-color: #fff8ba;
+            color: #000;
+            padding: 20px 50px;
+            font-size: 1.4rem;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cta button:hover {
+            background-color: #ffe065;
+        }
+
+        a.bookmark {
+            color: #e2a4ff;
+            text-decoration: none;
+        }
+
+        a.bookmark:hover {
+            text-decoration: underline;
+        }
+
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .services {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .service-item {
+                margin-bottom: 30px;
+                width: 100%;
+            }
+
+            .cta h2 {
+                font-size: 2.2rem;
+            }
+
+            .cta p {
+                font-size: 1.1rem;
+            }
+        }
+
+        div.gallery {
+  border: 1px solid #ccc;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+div.gallery {
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribui o espaço entre os itens */
+  height: 100%; /* Garante que o container de cada quadrado ocupe 100% de altura disponível */
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: 200px; /* Defina a altura fixa para as imagens */
+  object-fit: cover; /* Isso garante que as imagens cobrem completamente o espaço, mantendo a proporção */
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+  flex-grow: 1; /* Garante que a descrição ocupe o espaço restante disponível */
+}
+
+.responsive {
+  padding: 0 6px;
+  float: left;
+  width: 24.99999%; /* Distribui os quadrados de maneira igual */
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%; /* Dois quadrados por linha em telas menores */
+    margin: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%; /* Um quadrado por linha em telas muito pequenas */
+  }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Center website */
+.main {
+  max-width: 1000px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 55px;
+  word-break: break-all;
+}
+
+.row {
+  margin: 8px -16px;
+}
+
+/* Add padding BETWEEN each column (if you want) */
+.row,
+.row > .column {
+  padding: 8px;
+}
+
+/* Create four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 25%;
+}
+
+/* Clear floats after rows */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Content */
+.content {
+  background-color: white;
+  padding: 10px;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 900px) {
+  .column {
+    width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+        
+    </style>
+</head>
+<body>
+
+    <!-- Navegação -->
+    <nav>
+      <ul>
+          <li><a href="#" onclick="toggleSubMenu('submenuImportar')">Menu</a>
+              <ul class="submenu" id="submenuImportar" style="display: none;">
+                  <li><a href="paginicial.html">Início</a></li>
+                  <li><a href="../Login/cadastro.html">Cadastro</a></li>
+                  <li><a href="../Login/Entrar.html">Login</a></li>
+                  <li><a href="../ChatBot.html">ChatBot</a></li>
+                  <li><a href="../FForum/forum.html">Fórum</a></li>
+                  <li><a href="#" onclick="toggleSubMenu('submenuImport')">Importar</a>
+                      <ul class="submenu" id="submenuImport" style="display: none;">
+                          <li><a href="../videosverum/videos.html">Vídeo</a></li>
+                          <li><a href="../imagens/imagens.html">Imagem</a></li>
+                      </ul>
+                  </li>
+                  <li><a href="../Ajuda/AJUDAr.html#C5">Planos Verum IA+</a></li>
+                  <li><a href="../perfil verum/perfil.html">Perfil</a></li>
+                  <li><a href="../Ajuda/AJUDAr.html">Ajuda</a></li>
+              </ul>
+          </li>
+          <li><a href="../Login/contato.html">Contato</a></li>
+      </ul>
+  </nav>
+  
+  <script>
+      function toggleSubMenu(submenuId) {
+          var submenu = document.getElementById(submenuId);
+          if (submenu.style.display === "none") {
+              submenu.style.display = "block";
+          } else {
+              submenu.style.display = "none";
+          }
+      }
+  </script>
+    
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Descubra a Verdade por trás da Inteligência Artificial</h1>
+            <p>Junte-se a nós para uma experiência verdadeira.</p>
+            <a href="../Login/cadastro.html"><button>Se cadastre na Verum!</button></a>
+        </div>
+    </div>
+
+    
+    <!-- Call to Action Section -->
+    <section class="cta">
+        <h2>Há muito o que experenciar aqui.</h2>
+        <p> Está em dúvida sobre por onde começar?.</p>
+        <a href="../Ajuda/AJUDAr.html"><button>Acesse o Suporte!</button></a>
+    </section>
+
+    <!-- Sobre Nós Section -->
+    <section class="about">
+        <h2>Sobre Nós</h2>
+        <p>Somos estudantes da escola estadual Etec Polivalente de Americana e visamos criar um mundo melhor.</p>
+    
+    <div class="responsive">
+        <div class="gallery">
+          <a target="_blank" href="1.jpg">
+            <img src="1.jpg" alt="Cinque Terre">
+          </a>
+          <div class="desc">Cursamos Desenvolvimento de Sistemas no Polivalente.</div>
+        </div>
+      </div>
+      
+      <div class="responsive">
+        <div class="gallery">
+          <a target="_blank" href="2.png">
+            <img src="2.png" alt="Forest">
+          </a>
+          <div class="desc">Nós somos um grupo de quatro estudantes e estamos empenhados em criar uma tecnologia que vai fazer a diferença para você.</div>
+        </div>
+      </div>
+      
+      <div class="responsive">
+        <div class="gallery">
+          <a target="_blank" href="3.jpg">
+            <img src="3.jpg" alt="Northern Lights">
+          </a>
+          <div class="desc">Desenvolvemos esse TCC tendo em mente as melhores intenções, abrangendo comunidade e veracidade.</div>
+        </div>
+      </div>
+      
+      <div class="responsive">
+        <div class="gallery">
+          <a target="_blank" href="4.webp">
+            <img src="4.webp" alt="Mountains">
+          </a>
+          <div class="desc">Aproveite seu tempo aqui!</div>
+        </div>
+      </div>
+      
+      <div class="clearfix"></div>
+    </section>
+
+    <section>
+
+       <!-- MAIN (Center website) -->
+<div class="main">
+
+    <h1>CRIADORES</h1>
+    <hr>
+    
+    <h2>QUEM SOMOS</h2>
+    <p>Saiba mais sobre quem nós somos.</p>
+    
+    <!-- Portfolio Gallery Grid -->
+    <div class="row">
+      <div class="column">
+        <div class="content">
+          <img src="dudu.jpg" alt="Mountains" style="width:50%">
+          <h4>Eduardo  Juncker  Toras</h4>
+          <p>Tenho 18 anos, moro em Sumaré-SP e sou um dos fundadores da ideia VerumIA, responsável pelo desenvolvimento da página de vídeos, perfil, cadastro, login, formulário de suporte, alterações de design e diário de bordo.</p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <img src="du.jpg" alt="Nature" style="width:50%">
+          <h4>Eduardo Moraes Trevisan</h4>
+          <p>Tenho 18 anos, moro em Americana-SP e sou um dos fundadores da ideia VerumIA, responsável pelo desenvolvimento do ChatBot e do polimento do código das páginas.</p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <img src="edu.webp" alt="Mountains" style="width: 50%">
+          <h4>Eduardo Ramalho Moraes</h4>
+          <p> Tenho 18 anos, moro em Americana-SP e sou um dos fundadores da ideia VerumIA, responsável pela idealização da ideia do projeto ao Brainstorm, tembém pelo desenvolvimento da página Inicial, o fórum, página de ajuda e design.</p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <img src="henrique.jpg" alt="Lights" style="width:50%">
+          <h4>Henrique Moreira Sandrini</h4>
+          <p>Tenho 18 anos, moro em Americana-SP e sou um dos fundadores da ideia VerumIA, responsável pelo desenvolvimento da página de vídeos, imagens e documentação completa.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <img src="verum2.png" alt="Bear" style="width:10%">
+      <h3>VerumIA</h3>
+      <p> O motivo por trás da criação da VerumIA é simples; buscamos tornar a internet um local mais saúdavel, unificado e honesto, facilitando o acesso à verdade quando o assunto é inteligência artificial. Além disso, com o fórum, visamos transformar esse ambiente em uma comunidade ciente.</p>
+    </div>
+    
+    <!-- END MAIN -->
+    </div>
+
+    </section>
+    <footer style="background-color: #181818; color: #ccc; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 14px; text-align: center;">
+      Contato: <a href="mailto:verumsup@gmail.com?subject=Necessidade%20de%20Suporte&body=Olá,%0A%0APreciso%20de%20ajuda%20com%20o%20assunto%20abaixo:%0A%0AObrigado!" class="bookmark">verumsup@gmail.com</a> | 
+      Selos de segurança: Todos os direitos reservados à VerumIA. | 
+      Direitos autorais: Nexws. | © 2024
+    </footer>
+    
+</body>
+</html>

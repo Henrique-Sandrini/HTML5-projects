@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../Chat/verum5.png">
+    <title>Cadastro - VerumIA</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <style>
+        /* Estilos gerais */
+        body, html {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-repeat: repeat;
+            background-color: #161515;
+            height: 100%; 
+            display: flex;
+            flex-direction: column; 
+        }
+        .content {
+            flex: 1; 
+        }
+
+        nav {
+            background-color: #1e1e1e; 
+            color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+        }
+
+        nav::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, rgb(212, 137, 255) 0%, rgba(107, 81, 255, 0.5) 100%);
+            box-shadow: 0 0 8px rgba(0, 225, 255, 0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+            color: #fff58d; /* Amarelo claro no hover */
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #2d2d2d; /* Preto escuro para o submenu */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .submenu a {
+            color: #fff;
+            padding: 12px 16px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .submenu a:hover {
+            background-color: #3a3a3a;
+        }
+
+        /* Estilos do container */
+        .container {
+            width: 70%;
+            height: 80%;
+            margin: auto;
+            background-color: #1e1e1e;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            opacity: 95%;
+        }
+
+        .register-container {
+            padding: 100px;
+        }
+
+        .register-container h2 {
+            text-align: center;
+            color: #8172e0;
+        }
+
+        .register-container form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .register-container form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ca8aff;
+        }
+
+        .register-container form input {
+            width: 100%;
+            padding: 6px;
+            margin-bottom: 6px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    
+        .register-container form button {
+            width: 100%;
+            background-color: #d780ff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .register-container .login-account {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .register-container .login-account a {
+            color: #8172e0;
+            text-decoration: none;
+        }
+
+        .register-container .login-account a:hover {
+            text-decoration: underline;
+        }
+        a.bookmark {
+            color: #e2a4ff;
+            text-decoration: none;
+        }
+
+        a.bookmark:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="toggleSubMenu('submenuImportar')">Menu</a>
+                <ul class="submenu" id="submenuImportar" style="display: none;">
+                    <li><a href="../PagInicial/paginicial.html">Início</a></li>
+                    <li><a href="cadastro.html">Cadastro</a></li>
+                    <li><a href="Entrar.html">Login</a></li>
+                    <li><a href="../ChatBot.html">ChatBot</a></li>
+                    <li><a href="../FForum/forum.html">Fórum</a></li>
+                    <li><a href="#" onclick="toggleSubMenu('submenuImport')">Importar</a>
+                        <ul class="submenu" id="submenuImport" style="display: none;">
+                            <li><a href="../videosverum/videos.html">Vídeo</a></li>
+                            <li><a href="../imagens/imagens.html">Imagem</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../Ajuda/AJUDAr.html#C5">Planos Verum IA+</a></li>
+                    <li><a href="../perfil verum/perfil.html">Perfil</a></li>
+                    <li><a href="../Ajuda/AJUDAr.html">Ajuda</a></li>
+                </ul>
+            </li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+<div class="content">    
+    <div class="container">
+    <script>
+        function toggleSubMenu(submenuId) {
+            var submenu = document.getElementById(submenuId);
+            if (submenu.style.display === "none") {
+                submenu.style.display = "block";
+            } else {
+                submenu.style.display = "none";
+            }
+        }
+    </script>
+
+            <section class="register-container">
+                <h2>Cadastro</h2>
+                <form id="register-form">
+                    <label for="first-name">Nome:</label>
+                    <input type="text" id="first-name" name="first-name" required>
+                    
+                    <label for="last-name">Sobrenome:</label>
+                    <input type="text" id="last-name" name="last-name" required>
+
+                    <label for="username">Nome de Usuário:</label>
+                    <input type="text" id="username" name="username" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="phone">Telefone:</label>
+                    <input type="tel" id="phone" name="phone" required>
+
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" required>
+
+                    <label for="confirm-password">Repetir Senha:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+
+                    <button type="submit">Cadastrar</button>
+                </form>
+                <div class="login-account">
+                    <p>Já tem uma conta? <a href="Entrar.html">Faça login</a></p>
+                </div>
+            </section>
+    </div>
+</div>
+    <script>
+        // Código JavaScript para validar formulário
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (!firstName || !lastName || !username || !email || !phone || !password || !confirmPassword) {
+                alert('Por favor, preencha todos os campos.');
+                event.preventDefault();
+            } else if (!validateEmail(email)) {
+                alert('Por favor, insira um email válido.');
+                event.preventDefault();
+            } else if (password !== confirmPassword) {
+                alert('As senhas não coincidem.');
+                event.preventDefault();
+            } else {
+                // Se os dados estão corretos
+                alert('Cadastrado com sucesso!');
+                
+                // Limpa os campos do formulário
+                document.getElementById('register-form').reset();
+
+                // Redireciona após 3 segundos
+                setTimeout(function() {
+                    window.location.href = 'Entrar.html'; // Redireciona para a página inicial
+                }, 1000); 
+            }
+        });
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+    </script>
+    <footer style="background-color: #181818; color: #ccc; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 14px; text-align: center;">
+        Contato: <a href="mailto:verumsup@gmail.com?subject=Necessidade%20de%20Suporte&body=Olá,%0A%0APreciso%20de%20ajuda%20com%20o%20assunto%20abaixo:%0A%0AObrigado!" class="bookmark">verumsup@gmail.com</a> | 
+        Selos de segurança: Todos os direitos reservados à VerumIA. | 
+        Direitos autorais: NexWz. | © 2024
+      </footer>
+</body>
+</html>

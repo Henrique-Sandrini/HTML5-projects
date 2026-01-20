@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../Chat/verum5.png">
+    <title>Ajuda - VerumIA</title>
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #202020; 
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #1e1e1e; 
+            color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+        }
+
+        nav::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, rgb(238, 152, 255) 0%, rgb(99, 71, 255) 100%);
+            box-shadow: 0 0 8px rgba(0, 225, 255, 0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+            color: #fff58d; /* Amarelo claro no hover */
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #2d2d2d; /* Preto escuro para o submenu */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .submenu a {
+            color: #fff;
+            padding: 12px 16px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .submenu a:hover {
+            background-color: #3a3a3a;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #292929;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-title {
+            font-size: 24px;
+            border-bottom: 2px solid #e1e4e8;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        img {
+            border: 5px solid rgb(248, 229, 255);
+        }
+
+        h1, h2, h3, p, td {
+            color: #f3ecff;
+        }
+
+        h2 {
+            border-bottom: 1px solid #d8cee4;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        ul.help-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul.help-links li {
+            margin: 5px 0;
+        }
+
+        ul.help-links a {
+            color: #e2a4ff;
+            text-decoration: none;
+        }
+
+        ul.help-links a:hover {
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #f1dbff;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #474747;
+        }
+
+        .available {
+            color: #28a745;
+        }
+
+        .unavailable {
+            color: #dc3545;
+        }
+
+        a.bookmark {
+            color: #e2a4ff;
+            text-decoration: none;
+        }
+
+        a.bookmark:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        th{
+            color:#f0d0ff
+        }
+        a.bookmark {
+            color: #e2a4ff;
+            text-decoration: none;
+        }
+
+        a.bookmark:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="toggleSubMenu('submenuImportar')">Menu</a>
+                <ul class="submenu" id="submenuImportar" style="display: none;">
+                    <li><a href="../PagInicial/paginicial.html">Início</a></li>
+                    <li><a href="../Login/cadastro.html">Cadastro</a></li>
+                    <li><a href="../Login/Entrar.html">Login</a></li>
+                    <li><a href="../ChatBot.html">ChatBot</a></li>
+                    <li><a href="../FForum/forum.html">Fórum</a></li>
+                    <li><a href="#" onclick="toggleSubMenu('submenuImport')">Importar</a>
+                        <ul class="submenu" id="submenuImport" style="display: none;">
+                            <li><a href="../videosverum/videos.html">Vídeo</a></li>
+                            <li><a href="../imagens/imagens.html">Imagem</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="AJUDAr.html#C5">Planos Verum IA+</a></li>
+                    <li><a href="../perfil verum/perfil.html">Perfil</a></li>
+                    <li><a href="AJUDAr.html">Ajuda</a></li>
+                </ul>
+            </li>
+            <li><a href="../Login/contato.html">Contato</a></li>
+        </ul>
+    </nav>
+    
+    <script>
+        function toggleSubMenu(submenuId) {
+            var submenu = document.getElementById(submenuId);
+            if (submenu.style.display === "none") {
+                submenu.style.display = "block";
+            } else {
+                submenu.style.display = "none";
+            }
+        }
+    </script>
+
+    <div class="container">
+        <h1 class="section-title">Bem-vindo à Página de Ajuda</h1>
+        <p style="color:rgb(255, 255, 255)">Esta seção foi desenvolvida com o intuito de fornecer apoio e ajuda em relação ao funcionamento do site, a inteligência artificial e as principais questões feitas por usuários, servindo como suporte.</p>
+        <p style="color:rgb(255, 255, 255)">Logo abaixo estão as questões que serão abordadas:</p>
+        <p><a href="#C1" class="bookmark">◇ ChatBox com nossa IA.</a></p>
+        <p><a href="#C2" class="bookmark">◇ Importação de vídeos e imagens para análise.</a></p>
+        <p><a href="#C3" class="bookmark">◇ Cadastro e Login.</a></p>
+        <p><a href="#C4" class="bookmark">◇ Regras e Funcionamento do Fórum.</a></p>
+        <p><a href="#C5" class="bookmark">◇ Planos pagos.</a></p>
+        <p><a href="#C6" class="bookmark">◇ Contato.</a></p>
+        
+        <hr>
+
+        <h1 id="C1" class="section-title">ChatBox e seu funcionamento</h1>
+        <p>O site Verum conta com uma inteligência artificial em sua página inicial para fornecer ao usuário uma breve apresentação do que pode ser utilizado no site, desde as importações de vídeos e imagens até os básicos do Fórum.</p>
+        <p>Logo abaixo, uma imagem ilustrativa da caixa de texto utilizada para a inteligência artificial:</p>
+        <img src="CB.png" alt="ChatBox">
+        <p><strong>Tente iniciar uma conversa com a IA utilizando os textos abaixo!</strong></p>
+        <p>◇ Olá.</p>
+        <p>◇ Qual seu nome?</p>
+        <p>◇ Quem te criou?</p>
+        <p>◇ O que você faz?</p>
+        <p><strong>Veja como ficaria uma conversa utilizando estes comandos.</strong></p>
+        <img src="CBAwnsers.png" alt="Exemplo de Respostas da IA">
+        <p>Note que logo abaixo da resposta à pergunta "O que você faz?" aparecem duas opções. A primeira sendo "Analisar vídeos" e a segunda "Analisar imagens". Ao clicar em qualquer uma das duas, você será direcionado para uma página de uso da nossa IA, correspondente ao botão selecionado. Para analisar vídeos, utilize o primeiro botão. Já, para analisar imagens, utilize o segundo botão.</p>
+
+        <hr>
+
+        <h1 id="C2" class="section-title">Importação de vídeos e imagens para análise</h1>
+        <p>Nosso site de verificação foi desenvolvido para ajudar você a determinar se vídeos ou imagens são reais ou gerados por inteligência artificial (IA). Ao acessar a página inicial, você encontrará dois botões: um para vídeos e outro para imagens. Para iniciar o processo de análise de vídeos, basta clicar no botão "Analisar Vídeos". Isso o direcionará para uma nova página com uma interface simples e intuitiva, projetada para facilitar o uso.</p>
+        <img src="aha.png" alt="Interface de Análise de Vídeos">
+        <p>Na nova página, você verá uma caixa central com um botão de "Escolha um Vídeo". Clique neste botão para escolher o vídeo que deseja analisar a partir do seu dispositivo. Após selecionar o vídeo, ele começará a ser carregado em nosso sistema. Nossa tecnologia de IA entrará em ação, utilizando algoritmos avançados para examinar o vídeo em busca de quaisquer sinais de falsificação ou manipulação.</p>
+        <p>Depois de um breve período, o vídeo analisado aparecerá na tela. Se for identificado que o vídeo é falso, os motivos serão destacados diretamente nele. Além disso, abaixo do vídeo, haverá uma caixa de texto explicativa que detalha os erros e manipulações identificados pela nossa IA. Nosso sistema é projetado para oferecer resultados precisos e confiáveis, ajudando você a verificar a autenticidade dos materiais carregados. Esperamos que nossa ferramenta seja útil para suas necessidades de análise e verificação. Caso tenha alguma dúvida ou precise de suporte adicional, estamos à disposição para ajudar!</p>
+
+        <hr>
+
+        <h1 id="C3" class="section-title">Cadastro e Login</h1>
+        <h3><b>Cadastro</b></h3>
+        <p>Não possui uma conta? Acesse este <a href="#C0" class="bookmark">link</a> para criar uma.</p>
+        <h3><b>Login</b></h3>
+        <p>Para acessar sua conta, basta inserir seu e-mail e senha cadastrados anteriormente. Após isso, utilize o botão "Entrar".</p>
+        
+
+        <hr>
+
+        <h1 id="C4" class="section-title">Regras e Funcionamento do Fórum</h1>
+        <h3><b>Regras</b></h3>
+        <p>Para garantir que o nosso fórum da comunidade seja um espaço seguro e acolhedor para todos os usuários, estabelecemos algumas regras básicas que todos devem seguir. Primeiramente, é essencial que todos os membros tratem uns aos outros com respeito. Comentários ofensivos, discriminatórios ou abusivos não serão tolerados, pois buscamos manter um ambiente amigável e inclusivo.</p>
+        <p>É importante que o conteúdo publicado no fórum seja apropriado e relevante. Os usuários devem se concentrar em tópicos relacionados ao tema do fórum, evitando assuntos irrelevantes ou qualquer tipo de conteúdo inapropriado. Em particular, é estritamente proibido postar conteúdo adulto ou sexual, garantindo assim um ambiente seguro para todos os membros, independentemente da idade.</p>
+        <p>Spam e propaganda de qualquer tipo não são permitidos. Links externos devem ser compartilhados apenas se forem relevantes para a discussão em questão. Além disso, a proteção da privacidade dos usuários é uma prioridade. Portanto, é proibido compartilhar informações pessoais suas ou de outros sem permissão, como endereços, números de telefone ou qualquer outra informação sensível.</p>
+        <p>Incentivamos debates construtivos e saudáveis, mas pedimos que os usuários evitem confrontos agressivos. Discordâncias são naturais e até bem-vindas, desde que tratadas com civilidade. Se você encontrar qualquer conteúdo que viole estas regras, utilize a função de denúncia para informar os moderadores, que tomarão as medidas necessárias.</p>
+        <p>Além disso, respeitar a propriedade intelectual é fundamental. Certifique-se de ter os direitos necessários para compartilhar qualquer conteúdo que não seja de sua autoria, evitando assim problemas legais e respeitando o trabalho dos criadores originais.</p>
+
+        <h3><b>Funcionamento</b></h3>
+        <p>O fórum da comunidade do nosso site foi criado para facilitar a troca de informações e experiências sobre a autenticidade de imagens e vídeos. Os usuários podem publicar imagens e vídeos que descobriram ser gerados por IA ou que são autênticos, juntamente com uma breve descrição ou título que forneça contexto sobre o conteúdo compartilhado. As interações no fórum permitem que os usuários comentem sobre as postagens, participem de discussões e trocas de ideias. Além disso, é possível curtir as postagens para mostrar apoio ou concordância.</p>
+        <img src="forum save.png" alt="Fórum">
+        <p>Nosso objetivo é criar um espaço colaborativo onde os membros possam aprender uns com os outros e compartilhar suas descobertas sobre a autenticidade de imagens e vídeos, sempre respeitando as diretrizes estabelecidas. Se precisar de assistência ou tiver dúvidas sobre o uso do fórum, nossa equipe está sempre à disposição para ajudar.</p>
+
+        <hr>
+
+        <h1 id="C5" class="section-title">Planos pagos</h1>
+        <h3><b>Planos de Assinatura do Verum</b></h3>
+        <p>O Verum oferece dois planos distintos para atender às diferentes necessidades dos nossos usuários: Veritas e Auctus. Cada plano proporciona um conjunto único de benefícios, garantindo que você encontre a opção ideal para otimizar sua experiência na nossa plataforma.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Plano</th>
+                    <th>Suporte base</th>
+                    <th>Benefícios do Suporte</th>
+                    <th>Benefícios das análises</th>
+                    <th>Experiência no Fórum</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Veritas</td>
+                    <td class="available">✔️</td>
+                    <td>Suporte via e-mail<br>Respostas em até 4 dias úteis</td>
+                    <td class="unavailable">❌<br>Limitado a 5 análises por dia</td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td>Auctus</td>
+                    <td class="available">✔️</td>
+                    <td>Suporte via e-mail e chat<br>Respostas em até 24h<br>Suporte prioritário</td>
+                    <td class="available">✔️<br>Número de análises ilimitado<br>Acesso antecipado às atualizações</td>
+                    <td>Acesso a gifs como banners e fotos de perfil<br>Temas e layouts exclusivos<br>Sem anúncios</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><b>Plano Veritas</b></h3>
+        <p>O plano Veritas é ideal para quem busca uma solução básica com suporte confiável. Os assinantes deste plano têm acesso ao suporte base via e-mail, com respostas garantidas em até 4 dias úteis. Embora o suporte seja eficiente, o plano Veritas limita os usuários a 5 análises por dia e não inclui benefícios adicionais relacionados às análises. No que diz respeito à experiência no Fórum, este plano não oferece acesso a recursos exclusivos, como banners ou temas personalizados, e mantém uma navegação com anúncios.</p>
+
+        <h3><b>Plano Auctus</b></h3>
+        <p>Para uma experiência mais completa e enriquecedora, o plano Auctus é a escolha recomendada. Os assinantes deste plano recebem suporte prioritário via e-mail e chat, com respostas em até 24 horas, assegurando uma assistência ágil e eficaz. Além disso, o plano Auctus permite um número ilimitado de análises e oferece acesso antecipado a atualizações da plataforma. Os benefícios se estendem também à experiência no Fórum, que inclui acesso a gifs como banners e fotos de perfil, temas e layouts exclusivos, e uma navegação sem anúncios. Este plano é perfeito para quem deseja maximizar suas interações e desfrutar de todas as funcionalidades avançadas do Verum.</p>
+
+        <hr>
+
+        <h1 id="C6" class="section-title">Contato</h1>
+        <h3><b>E-mail</b></h3>
+        <p>Utilize o link de e-mail <a href="mailto:verumsup@gmail.com?subject=Necessidade%20de%20Suporte&body=Olá,%0A%0APreciso%20de%20ajuda%20com%20o%20assunto%20abaixo:%0A%0AObrigado!" class="bookmark">verumsup@gmail.com</a> para enviar sua mensagem. Estaremos fornecendo assistência com suas dúvidas ou problemas. Tenha em mente que sua resposta será enviada de acordo com o prazo relacionado ao seu plano.</p>
+        <p>Caso presencie problemas relacionados à sua assinatura, envie-nos o quanto antes um pedido de ajuda para o e-mail oficial: <a href="mailto:verumassinaturassup@gmail.com?subject=Assinatura%20com%20Problemas&body=Olá,%0A%0APreciso%20de%20ajuda%20com%20o%20assunto%20abaixo.%0A%0AObrigado!" class="bookmark">verumassinaturassup@gmail.com</a>.</p>
+        
+        <p><a href="#C0" class="bookmark">◇ Retornar ao início.</a></p>
+    </div>
+    <footer style="background-color: #181818; color: #ccc; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 14px; text-align: center;">
+        Contato: <a href="mailto:verumsup@gmail.com?subject=Necessidade%20de%20Suporte&body=Olá,%0A%0APreciso%20de%20ajuda%20com%20o%20assunto%20abaixo:%0A%0AObrigado!" class="bookmark">verumsup@gmail.com</a> | 
+        Selos de segurança: Todos os direitos reservados à VerumIA. | 
+        Direitos autorais: NexWz. | © 2024
+      </footer>
+</body>
+</html>
